@@ -1,0 +1,18 @@
+[
+  {
+    "id": "SHP-001",
+    "origin": "Jakarta",
+    "destination": "Surabaya",
+    "vehicle": "Truck",
+    "transporter": null,
+    "status": "Not Assigned"
+  },
+  {
+    "id": "SHP-002",
+    "origin": "Bandung",
+    "destination": "Medan",
+    "vehicle": "Container",
+    "transporter": "PT Transportindo",
+    "status": "Assigned"
+  }
+]
