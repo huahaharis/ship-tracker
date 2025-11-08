@@ -73,7 +73,7 @@ ship-tracker/
 ### 1. Clone repository
 
 ```bash
-git clone https://github.com/your-repo-url/ship-tracker.git
+git clone https://github.com/huahaharis/ship-tracker.git
 cd ship-tracker
 ```
 
@@ -100,7 +100,7 @@ npm run dev
 Run tests:
 
 ```bash
-npm run test
+npx vitest
 ```
 
 Example output:
