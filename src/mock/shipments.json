@@ -4,13 +4,85 @@
     "origin": "Jakarta",
     "destination": "Surabaya",
     "vehicle": "Truck",
-    "transporter": null,
-    "status": "Not Assigned"
+    "transporter": "PT Sicepat Logistics",
+    "status": "Assigned"
   },
   {
     "id": "SHP-002",
     "origin": "Bandung",
     "destination": "Medan",
+    "vehicle": "Container",
+    "transporter": "PT Transportindo",
+    "status": "Assigned"
+  },
+  {
+    "id": "SHP-003",
+    "origin": "Jakarta",
+    "destination": "Semarang",
+    "vehicle": "Truck",
+    "transporter": null,
+    "status": "Not Assigned"
+  },
+  {
+    "id": "SHP-004",
+    "origin": "Serang",
+    "destination": "Lampung",
+    "vehicle": "Container",
+    "transporter": null,
+    "status": "Not Assigned"
+  },
+  {
+    "id": "SHP-005",
+    "origin": "Surabaya",
+    "destination": "Madura",
+    "vehicle": "Truck",
+    "transporter": null,
+    "status": "Not Assigned"
+  },
+  {
+    "id": "SHP-006",
+    "origin": "Madura",
+    "destination": "Surabaya",
+    "vehicle": "Truck",
+    "transporter": "PT JNE Cargo",
+    "status": "Assigned"
+  },
+    {
+    "id": "SHP-007",
+    "origin": "Jakarta",
+    "destination": "Surabaya",
+    "vehicle": "Truck",
+    "transporter": null,
+    "status": "Not Assigned"
+  },
+  {
+    "id": "SHP-008",
+    "origin": "Bandung",
+    "destination": "Medan",
+    "vehicle": "Container",
+    "transporter": "PT Transportindo",
+    "status": "Assigned"
+  },
+  {
+    "id": "SHP-009",
+    "origin": "Jakarta",
+    "destination": "Bali",
+    "vehicle": "Truck",
+    "transporter": null,
+    "status": "Not Assigned"
+  },
+    {
+    "id": "SHP-010",
+    "origin": "Jakarta",
+    "destination": "Malang",
+    "vehicle": "Truck",
+    "transporter": null,
+    "status": "Not Assigned"
+  },
+  {
+    "id": "SHP-011",
+    "origin": "Jakarta",
+    "destination": "Papua",
     "vehicle": "Container",
     "transporter": "PT Transportindo",
     "status": "Assigned"

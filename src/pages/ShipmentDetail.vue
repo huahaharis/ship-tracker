@@ -14,27 +14,26 @@
             <p><b>Current Transporter:</b> {{ shipment?.transporter ?? "-" }}</p>
         </div>
         <a-divider />
-        <a-form layout="vertical" @submit.prevent class="mt-4">
-            <a-form-item label="Assign Transporter" required>
-                <a-select v-model:value="selectedTransporter" :options="transporterOptions"
-                    placeholder="Select transporter..." style="width: 100%;" allow-clear show-search />
-            </a-form-item>
-            <a-button type="primary" :loading="loading" block @click="assign">
-                Assign Transporter
-            </a-button>
-        </a-form>
+        <BaseSelect v-if="auth.isAdmin" v-model="selectedTransporter" :options="transporterOptions" placeholder="Select transporter" />
+        <a-button v-if="auth.isAdmin" class="assign-btn" @click="assign" type="primary">
+            Assign Transporter
+        </a-button>
     </a-card>
 </template>
 
 <script setup lang="ts">
 import { useRoute } from "vue-router";
-import { ref } from "vue";
+import { ref, computed } from "vue";
 import { useShipmentStore } from "../store/shipmentStore";
-import { message } from "ant-design-vue";
+import { useNotification } from "../composables/useNotification";
+import { useAuthStore } from "../store/authStore";
+import BaseSelect from "../components/ui/BaseSelect.vue";
+
+const { showSuccess, showError } = useNotification();
 
 const route = useRoute();
 const store = useShipmentStore();
-const shipment = store.shipments.find((s) => s.id === route.params.id);
+const auth = useAuthStore();
 
 const transporterOptions = [
     { label: "PT Transportindo", value: "PT Transportindo" },
@@ -42,23 +41,67 @@ const transporterOptions = [
     { label: "PT Sicepat Logistics", value: "PT Sicepat Logistics" },
 ];
 
-const selectedTransporter = ref<string>(shipment?.transporter ?? "");
+const shipment = computed(() =>
+  store.shipments.find((s) => s.id === route.params.id)
+);
+
+const selectedTransporter = ref("");
 const loading = ref(false);
 
 function assign() {
     if (!selectedTransporter.value) {
-        message.error("Please select a transporter.");
+        showError("Please select a transporter.");
         return;
     }
     loading.value = true;
     setTimeout(() => {
-        const success = store.assignTransporter(shipment!.id, selectedTransporter.value);
+        const success = store.assignTransporter( shipment.value!.id, selectedTransporter.value);
         if (success) {
-            message.success("Transporter successfully assigned! ✅");
+            showSuccess("Transporter successfully assigned! ✅");
         } else {
-            message.error("Failed to assign transporter ❌");
+            showError("Failed to assign transporter ❌");
         }
         loading.value = false;
     }, 600);
 }
 </script>
+
+<style scoped>
+.assign-btn {
+    display: flex;
+    background-color: #1677ff !important;
+    border-color: #1677ff !important;
+    color: white !important;
+    padding: 8px 18px;
+    font-size: 15px;
+    border-radius: 8px;
+    font-weight: 500;
+    margin-top: 4px;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    transition: all 0.25s ease;
+    box-shadow: 0 2px 4px rgba(22, 119, 255, 0.25);
+}
+
+.assign-btn:hover:not([disabled]) {
+    background-color: #3c8bff !important;
+    border-color: #3c8bff !important;
+    box-shadow: 0 3px 6px rgba(22, 119, 255, 0.35);
+}
+
+.assign-btn:active:not([disabled]) {
+    background-color: #0f5ed6 !important;
+    border-color: #0f5ed6 !important;
+    transform: scale(0.98);
+}
+
+.assign-btn[disabled] {
+    background-color: #d0d7e1 !important;
+    border-color: #d0d7e1 !important;
+    color: white !important;
+    cursor: not-allowed !important;
+    box-shadow: none !important;
+    opacity: 0.6;
+}
+</style>

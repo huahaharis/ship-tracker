@@ -1,6 +1,2 @@
 @import "tailwindcss";
 @import "ant-design-vue/dist/reset.css";
-
-.ant-layout-header {
-  color: rgba(254, 252, 252, 0.85);
-}
